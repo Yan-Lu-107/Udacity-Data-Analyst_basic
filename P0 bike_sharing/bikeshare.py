@@ -77,7 +77,7 @@ def load_data(city, month, day):
     #df = pd.read_csv(CITY_DATA[city])
     filepath=os.path.join(os.path.dirname(__file__))
     filename=CITY_DATA[city]
-    df = pd.read_csv(filepath + "/"+filename)
+    df = pd.read_csv(filepath + "/data/"+filename)
 
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
