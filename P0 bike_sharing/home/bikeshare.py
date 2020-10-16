@@ -1,6 +1,7 @@
 import time
 import pandas as pd
 import numpy as np
+import os
 #from collections import Counter
 
 CITY_DATA = { 'chicago': 'chicago.csv',
@@ -8,7 +9,8 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'washington': 'washington.csv' }
 
 def get_filters():
-    """
+    """path
+    
     Asks user to specify a city, month, and day to analyze.
 
     Returns:
@@ -69,14 +71,20 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
+
+
      # load data file into a dataframe
-    df = pd.read_csv(CITY_DATA[city])
+    #df = pd.read_csv(CITY_DATA[city])
+    filepath=os.path.join(os.path.dirname(__file__))
+    filename=CITY_DATA[city]
+    df = pd.read_csv(filepath + "/"+filename)
+
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
     # extract month and day of week from Start Time to create new columns
     df['month'] = df['Start Time'].dt.month
-    df['day_of_week'] = df['Start Time'].dt.weekday_name
+    df['day_of_week'] = df['Start Time'].dt.day_name()
 
     # filter by month if applicable
     if month != 0:#0=all
@@ -197,6 +205,7 @@ def common_used_value(df,parameter):
 def main():
     while True:
         city, month, day = get_filters()
+
         df = load_data(city, month, day)
         time_stats(df)
         station_stats(df)
