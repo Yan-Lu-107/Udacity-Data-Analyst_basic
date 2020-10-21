@@ -1,4 +1,6 @@
 ## UDACITY Data Analysis Nanodegree Project: Exploring Weather Trends.
+
+
 # Overview
 In this project, I analyzed local and global temperature data and compare the temperature trends for the closest city from where i live which is 'Shanghai' to overall global temperature trends.
 
